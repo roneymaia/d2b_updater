@@ -1,5 +1,7 @@
 const uaup = require('./uaup-js');
 
+const APP = 'app';
+
 //This is Optional
 const defaultStages = {
     Checking: "Verificando...", // When Checking For Updates.
@@ -15,8 +17,9 @@ const updateOptions = {
     gitRepo: "d2b_updater", // [Required] Your Repo Name
     gitUsername: "roneymaia",  // [Required] Your GitHub Username.
 
-    appName: "app", //[Required] The Name of the app archive and the app folder.
+    appName: APP, //[Required] The Name of the app archive and the app folder.
     appDirectory: __dirname,
+    tempDirectory: __dirname + '\\tmp',
 
     stageTitles: defaultStages, // {Default is defaultStages} [Optional] Sets the Status Title for Each Stage
     disableLaunch: true,

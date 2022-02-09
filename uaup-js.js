@@ -3,6 +3,7 @@
 //#region IMPORTING
 const request = require('request');
 const fs = require('fs');
+const fetch = require('node-fetch');
 //#endregion IMPORTING
 
 ////////////////////    GLOBAL VARIABLES    ////////////////////
@@ -196,7 +197,10 @@ function UpdateCurrentVersion(options) {
  * @param {number} tb - Total Bytes to Download
  */
 function showProgress(rb, tb) {
-    console.log(`${Math.floor((rb * 100) / tb)}% | ${rb} bytes of ${tb} bytes`);
+    //console.log(`${Math.floor((rb * 100) / tb)}% | ${rb} bytes of ${tb} bytes`);
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`${Math.floor((rb * 100) / tb)}% | ${rb} bytes de ${tb} bytes`);
     try {
         if (dl_bar !== null)
             dl_bar.setAttribute('value', (rb * 100) / tb);
@@ -272,7 +276,7 @@ async function CheckForUpdates(options = defaultOptions) {
             }
             return current_version !== new_version;
         } else {
-            console.warn("Couln't find the Version File, this usually means that there was no previous update.")
+            // console.warn("Couln't find the Version File, this usually means that there was no previous update.")
             return true;
         }
     }
@@ -308,7 +312,8 @@ function Download(url, path, options) {
     });
 
     req.on('end', () => {
-        Install(options)
+        process.stdout.write("\n");
+        Install(options);
     });
 }
 /**
@@ -330,7 +335,9 @@ function Install(options) {
  */
 function CleanUp(options) {
     updateHeader(options.stageTitles.Cleaning);
-    fs.rmdirSync(options.tempDirectory, { recursive: true, maxRetries: 3, retryDelay: 500 })
+    try {
+      fs.rmdirSync(options.tempDirectory, { recursive: true, maxRetries: 3, retryDelay: 1000 });
+    } catch {}
     setTimeout(() => LaunchApplication(options), 2000);
 }
 

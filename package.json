@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/roneymaia/d2b_updater#readme",
   "dependencies": {
-    "adm-zip": "^0.5.9"
+    "adm-zip": "^0.5.9",
+    "node-fetch": "^2.6.7",
+    "request": "^2.88.2"
   }
 }
