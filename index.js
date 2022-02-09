@@ -1,4 +1,6 @@
 const uaup = require('./uaup-js');
+const fkill = require('fkill');
+// const readline = require('readline-sync');
 
 const APP = 'app';
 
@@ -25,4 +27,10 @@ const updateOptions = {
     disableLaunch: true,
 };
 
-uaup.Update(updateOptions);
+// readline.question('\nA atualizacao fechara todas as janelas Diablo II e o Launcher.\nCaso deseje prosseguir pressione qualquer tecla, caso nao, apenas feche essa janela!');
+
+(async () => {
+  try { await fkill(['Game.exe'], { force: true }); } catch {}
+  try { await fkill(['D2BLauncher.exe'], { force: true }); } catch {}
+  setTimeout(() => uaup.Update(updateOptions), 2000);
+})()
