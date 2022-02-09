@@ -1,0 +1,22 @@
+{
+  "name": "d2b_updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roneymaia/d2b_updater.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roneymaia/d2b_updater/issues"
+  },
+  "homepage": "https://github.com/roneymaia/d2b_updater#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.9"
+  }
+}
